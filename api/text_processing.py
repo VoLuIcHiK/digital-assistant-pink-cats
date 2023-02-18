@@ -10,17 +10,24 @@ import json
 from nltk.stem.snowball import SnowballStemmer
 
 words_to_section = {'добавить проект': ['созда', 'проект', 'сдела', 'описа', 'добав'],
-               'мои проекты': ['проект', 'сохранен', 'реализова', 'созда', 'посмотрет', 'глянут'],
-               'мои заявки': ['заявк', 'провер', 'посмотрет', 'откр', 'просмотрет', 'статус']}
-url_to_section = {'добавить проект': 'кря', 'мои проекты': 'мяу', 'мои заявки': 'гав'}
+               'мои проекты': ['проект', 'сохранен', 'реализова', 'созда', 'посмотрет', 'глянут', 'узна', 'отслед'],
+               'мои заявки': ['заявк', 'провер', 'посмотрет', 'откр', 'просмотрет', 'статус', 'глянут', 'узна', 'отслед'],
+                    'архив проектов': ['проект', 'сохранен', 'реализова', 'созда', 'посмотрет', 'глянут', 'архив',
+                                       'прошл', 'предыдущ'],
+                'грантовые соглашения': ['грант',' грантов', 'соглашен', 'договорен', 'договор'],
+                'отчеты': ['отчетн', 'отчет', 'файл', 'смет', 'чек'],
+                    'профиль': ['личн', 'кабинет', 'профил', 'анкет', 'информац', 'пользоаател', 'лк']}
+url_to_section = {'добавить проект': 'https://grants.myrosmol.ru/projects/create/386d79e1-1fa9-4e9d-9357-f8777644bcde:1c49a8d0-35c1-43c3-894e-ed03087dceaa', 'мои проекты': 'https://grants.myrosmol.ru/projects',
+                  'мои заявки': 'https://grants.myrosmol.ru/participants'}
 detect_doc_fields = {'название проекта': ['заполня', 'назван', 'проект'],
                       'регион реализации проекта': ['регион', 'район', 'област'],
-                      'руководитель проекта': ['оп', 'руководител', 'опыт'],
+                      'опыт руководителя проекта': ['оп', 'руководител', 'опыт'],
                      'описание функционала руководителя': ['функционал', 'руководител', 'действ', 'возможн', 'обязан'],
                      'адрес регистрации руководителя проекта': ['зарегистрирова', 'прописа', 'числ', 'адрес',
                                                                 'регистрац', 'руководител'],
+                    'логотип': ['логотип', 'лого', 'аватарк', 'аватар', 'фотограф', 'фот'],
                      'видео-визитка (ссылка на ролик на любой видеохостинге)': ['визитк', 'видеохостинг',
-                                                                                'ролик', 'визиток']}
+                                                                                'ролик', 'визиток', 'виде']}
 dictionary_number = {
     'ноль': 0, 'ноля': 0, 'нулевой': 0, 'нулевого': 0,
     'один': 1, 'одного': 1, 'одна': 1, 'одной': 1, 'первый': 1, 'первого': 1,
@@ -65,8 +72,6 @@ dictionary_number = {
 }
 decimal_words = ['ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять']
 ending = ['ый', 'ий', 'ое', 'ой', 'ая', 'ые', 'ого', 'ых', 'ому', 'ым', 'ую', 'ыми', 'ом']
-#def create_project
-create_project_regex = r'создать проект'
 
 def number_formation(number_words):
     '''Форматирование чисел'''
@@ -259,6 +264,7 @@ def navigation(words, len_text):
     words - список обрезанных слов (после стемминга),
     len_text - длина изначального запроса
     '''
+    mas_answer = []
     dict_answer = {}
     if len_text >= 4:
         porog_count = 2
@@ -271,16 +277,18 @@ def navigation(words, len_text):
                 count += 1
         if count >= porog_count:
             dict_answer[key] = url_to_section[key]
+            mas_answer.append([key, url_to_section[key]])
     with open('answer.json', 'w') as json_file:
         json.dump(dict_answer, json_file, ensure_ascii=False)
-    return json_file
+    #print(mas_answer)
+    return mas_answer
 
-def help(words, len_text):
+def detect_field(words, len_text):
     '''Функция, отвечающая за помощь в заполнении формы создания проекта, где
         words - список обрезанных слов (после стемминга),
         len_text - длина изначального запроса
         '''
-    dict_answer = {}
+    field = ''
     if len_text >= 4:
         porog_count = 2
     else:
@@ -291,24 +299,43 @@ def help(words, len_text):
             if word in detect_doc_fields[key]:
                 count += 1
         if count >= porog_count:
-            dict_answer[key] = detect_doc_fields[key]
-    with open('help.json', 'w') as json_file:
-        json.dump(dict_answer, json_file, ensure_ascii=False)
+            field = key
+    '''with open('help.json', 'w') as json_file:
+        json.dump(dict_field, json_file, ensure_ascii=False)'''
+    print(field)
+    return field
 
 
+def show_field_info(field):
+    '''Функция, отвечающая за нахождение информации о нужном поле, где
+    dict_field - словарь, где key - название поля, value - информация по заполнению данного поля'''
+    with open('instructions2fields.txt') as file:  # Читаем файл
+        lines = file.read().splitlines()  # read().splitlines() - чтобы небыло пустых строк
+    info_dict = {}
+    for line in lines:
+        key, value = line.split(':: ')  #разделение по двойному двоеточию (до двойного дветочия ключ, после - значение)
+        info_dict.update({key: value})
+    for key in info_dict:
+        if key == field:
+            print(info_dict[key])
+            return info_dict[key]
 
+def web_bot(text):
+    '''Главная функция'''
+    text = text.lower()
+    words = stopwords_stem(text) #удаление стоп-слов
+    return navigation(words, len(text))
 
-
-def main():
-    #text = "Мне нужно посмотреть статус заявки"
-    text = "Что нужно написать в опыт руководителя"
+'''def main():
+    #text = "Мне нужно посмотреть статус заявки и мои документы отчетности отчеты файлы смета чеки видео опыт"
+    text = "Я хочу добавить проект"
     #Очистка данных
     text = text.lower()
     words = stopwords_stem(text)
     #navigation(words, len(text))
-    help(words, len(text))
+    #detect_field(words, len(text))
+    show_field_info(detect_field(words, len(text)))
     mas = []
-    return mas
+    return mas'''
 
-main()
-
+web_bot('Я хочу добавить проект')
