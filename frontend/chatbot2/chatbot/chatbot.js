@@ -1,3 +1,9 @@
+var ajaxCheck = 0;
+var ajaxCheck2 = 0;
+var ajaxText = '';
+
+
+
 // полифилл для matches
 if (!Element.prototype.matches) {
   Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
@@ -117,6 +123,27 @@ SimpleChatbot.prototype._outputContent = function (interval) {
   var humanIds = botData.human;
   var $container = this._$root.querySelector('.chatbot__items');
   var botContent = botData.content;
+
+
+  // отправляем данные на сервер
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    if (request.readyState === 0 || request.readyState === 4) {
+      if (request.status == 200) {
+        console.log(JSON.parse(request.responseText));
+      }
+    }
+  }
+  console.log(ajaxCheck, ajaxText);
+  if(ajaxCheck != 0){
+    botContent = ajaxText;
+  }
+
+
+
+
+
+
   if (Array.isArray(botContent)) {
     botContent = botContent.slice();
     for (var i = 0, length = botContent.length; i < length; i++) {
@@ -191,7 +218,7 @@ SimpleChatbot.prototype._outputContent = function (interval) {
       }
     } else {
       const $botContent = this._template('bot', botContent);
-      $container.insertAdjacentHTML('beforeend', $botContent);
+      $container.insertAdjacentHTML('afterend', $botContent);
       $container.scrollTop = $container.scrollHeight;
     }
     fn2();
@@ -217,6 +244,7 @@ SimpleChatbot.prototype._addToChatHumanResponse = function (humanContent) {
 
 // функция для обработки события click
 SimpleChatbot.prototype._eventHandlerClick = function (e) {
+
   var $target = e.target;
   var botIndex = $target.dataset.botIndex;
   var url = this._url;
@@ -270,6 +298,7 @@ SimpleChatbot.prototype._eventHandlerClick = function (e) {
     $prev = $prev.previousElementSibling;
   }
   var $botContent = $first;
+
   while ($botContent) {
     if (!$botContent.classList.contains('chatbot__item_bot')) {
       break;
@@ -329,10 +358,47 @@ SimpleChatbot.prototype._eventHandlerClick = function (e) {
     if (request.readyState === 0 || request.readyState === 4) {
       if (request.status == 200) {
         //console.log(JSON.parse(request.responseText));
+        //console.log(JSON.parse(request.responseText).chat);
+
+
+        obj = JSON.parse(request.responseText).chat
+        for (key in obj) {
+          userLastMsg = obj[key].content;
+        }
+
+        if(userLastMsg == 'Задать вопрос') {
+          ajaxCheck2 = 1;
+          ajaxCheck = 1;
+        }
+        if(ajaxCheck2 == 1) {
+
+
+          // $.ajax({
+          //   url: 'https://projectvoid.play.ai/api',
+          //   type: 'POST',
+          //   data: '123',
+          //   success: function (result){
+          //     ajaxCheck = 1;
+          //     ajaxText = 'asdasd';
+          //   }
+          // });
+
+
+          ajaxText = 'Вернуть что то';
+
+        }
+
+
+
+
+
+
+
       } else {
-        //console.log('error');
+        console.log('error');
       }
     }
+
   };
   request.open('POST', url);
   request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');

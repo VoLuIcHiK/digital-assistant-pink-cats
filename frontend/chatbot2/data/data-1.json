@@ -3,18 +3,23 @@
     "0": {
       "content": [
         "Привет!",
-        "Я Кисуня - бот поддержки сайта <a href=\"https://grants.myrosmol.ru\" target=\"_blank\">grants.myrosmol.ru</a>"
+        "Я Кисуня - бот поддержки сайта <a href=\"https://grants.myrosmol.ru\" target=\"_blank\">grants.myrosmol.ru</a>",
+        "Я в телеграмме - <a href=\"https://t.me/digital_assistant_pink_cats_bot\" target=\"_blank\">Кисуня</a>"
       ],
       "human": [0]
     },
-    "1": { "content": "Как я могу Вам помочь?", "human": [1, 2] },
-    "2": { "content": "Какой у Вас вопрос?", "human": [3] },
-    "3": {"content": "Я умею...", "human": [2] }
+    "1": { "content": "Как я могу Вам помочь?", "human": [1, 2, 3] },
+    "2": { "content": "Какой у Вас вопрос?", "human": [4] },
+    "3": {"content": "Я умею: <br>- помогать с навигацией<br>- помогать с заполнением формы<br>- уведомлять пользователя<br>- поддерживает управление голосом", "human": [2] },
+    "4": {"content": "Выберите способ получения", "human": [5, 6] }
   },
   "human": {
     "0": { "content": "Приветик, Кисуня!", "bot": 1 },
     "1": { "content": "Что ты умеешь?", "bot": 3},
     "2": {"content": "Задать вопрос", "bot": 2},
-    "3": { "content": "", "bot": 2, "user_text": "" }
+    "3": {"content": "Настройка уведомлений", "bot": 4},
+    "4": { "content": "", "bot": 2, "user_text": "" },
+    "5": {"content": "Присылать на почту", "bot": 1 },
+    "6": {"content": "Присылать в телеграм", "bot": 1 }
   }
 }

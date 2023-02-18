@@ -15,25 +15,52 @@
   height: 50px;
   border-radius: 25px;
 
+
   cursor: pointer;
   transition: background-color 0.15s ease-in-out;
+
 }
+
+
+
+
+
+
+
+
+
 
 .chatbot__btn::before {
   content: '';
   position: absolute;
-  width: 70px;
-  height: 70px;
-  left: -20px;
-  top: -20px;
+  width: 100px;
+  height: 100px;
+  left: -60px;
+  top: -60px;
+
   background: transparent no-repeat center center;
   background-size: 100% 100%;
-  background-image: url("../image_2023-02-18_19-43-53.png");
+  background-image: url("../image_2023-02-18_23-59-08.png");
 }
 
-.chatbot__btn:hover {
-  background-color: #faa419;
+.chatbot__btn:hover::before {
+  height: 133px;
+  top: -90px;
+  background-image: url("../image_2023-02-18_23-59-07.png");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* chatbot__tooltip */
 .chatbot__tooltip {
