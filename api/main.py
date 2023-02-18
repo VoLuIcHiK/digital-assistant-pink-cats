@@ -1,7 +1,9 @@
 import os
-from flask import Flask, request
+from flask import Flask, request, make_response
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/api', methods=['POST'])
@@ -14,7 +16,7 @@ def handle_request():
     # ...
 
     # return the response to the bot
-    return 'Response from the API server'
+    return {"text": "Response from the API server", "buttons_text": ["Only", "One", "Word"]}
 
 
 if __name__ == '__main__':
