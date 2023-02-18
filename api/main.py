@@ -5,8 +5,8 @@ from http.client import BAD_REQUEST
 from flask import Flask, request, make_response, Response
 from flask_cors import CORS
 
-from api.audio2text import get_text
-from api.text_processing import web_bot
+from audio2text import get_text
+from text_processing import web_bot
 
 app = Flask(__name__)
 CORS(app)
