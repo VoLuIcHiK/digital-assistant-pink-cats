@@ -1,0 +1,20 @@
+{
+  "bot": {
+    "0": {
+      "content": [
+        "Привет!",
+        "Я Кисуня - бот поддержки сайта <a href=\"https://grants.myrosmol.ru\" target=\"_blank\">grants.myrosmol.ru</a>"
+      ],
+      "human": [0]
+    },
+    "1": { "content": "Как я могу Вам помочь?", "human": [1, 2] },
+    "2": { "content": "Какой у Вас вопрос?", "human": [3] },
+    "3": {"content": "Я умею...", "human": [2] }
+  },
+  "human": {
+    "0": { "content": "Приветик, Кисуня!", "bot": 1 },
+    "1": { "content": "Что ты умеешь?", "bot": 3},
+    "2": {"content": "Задать вопрос", "bot": 2},
+    "3": { "content": "", "bot": 2, "user_text": "" }
+  }
+}

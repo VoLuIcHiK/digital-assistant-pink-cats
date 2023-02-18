@@ -26,10 +26,9 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <link href="assets/css/btn.css" rel="stylesheet">
+
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -39,14 +38,11 @@
   <!-- ChatBot JS -->
   <script src="chatbot2/chatbot/chatbot.js"></script>
 
-
 </head>
 
 <body>
 
-
-
-<!-- ======= Header ======= -->
+  <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -109,11 +105,15 @@
         </li><!-- End Profile Nav -->
 
 
-
       </ul>
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->
+
+
+
+
+
 
 
 
@@ -198,39 +198,64 @@
 
 
 
+
   <main id="main" class="main">
 
 
 
     <section class="section dashboard">
-
-
+      <div class="row">
         <div class="col">
+          <div class="card-test">
 
-          <div class="card info-card sales-card">
-
-            <div class="pagetitle">
-              <h1>Мои проекты</h1>
-            </div><!-- End Page Title -->
+            <h1>Мои заявки</h1>
 
 
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Заявка № 1<?=$i?></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Заголовок</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text"><b>Статус</b>: В обработке</p>
+                <a href="#" class="btn btn-primary">Подробнее...</a>
+              </div>
+            </div><!-- End Card with titles, buttons, and links -->
 
-            <div>
-              <select>
-                <option selected>Регион</option>
-              </select>
-              <select>
-                <option selected>Тип проекта</option>
-              </select>
-              <select>
-                <option selected>Шаблон проекта</option>
-              </select>
-            </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Заявка № 2<?=$i?></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Заголовок</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text"><b>Статус</b>: В обработке</p>
+                <a href="#" class="btn btn-primary">Подробнее...</a>
+              </div>
+            </div><!-- End Card with titles, buttons, and links -->
 
-            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Добавить проект</button>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Заявка № 3<?=$i?></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Заголовок</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text"><b>Статус</b>: В обработке</p>
+                <a href="#" class="btn btn-primary">Подробнее...</a>
+              </div>
+            </div><!-- End Card with titles, buttons, and links -->
+
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Заявка № 4<?=$i?></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Заголовок</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text"><b>Статус</b>: В обработке</p>
+                <a href="#" class="btn btn-primary">Подробнее...</a>
+              </div>
+            </div><!-- End Card with titles, buttons, and links -->
+
+
 
           </div>
 
+        </div>
       </div>
     </section>
 
@@ -240,36 +265,15 @@
 
 
 
-    <div id="id01" class="modal">
-      <form class="modal-content animate" action="work_with_connection/create_connection.php" method="post">
-        <div class="imgcontainer">
-          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-        </div>
-        <div class="container">
-          <label for="host"><b>Host</b></label>
-          <input type="text" placeholder="Enter Host" name="host" required>
-          <label for="port"><b>Port</b></label>
-          <input type="text" placeholder="Enter Port" name="port" required>
-          <label for="user_name"><b>User</b></label>
-          <input type="text" placeholder="Enter User" name="user_name" required>
-          <label for="password"><b>Password</b></label>
-          <input type="text" placeholder="Enter Password" name="password" required>
-        </div>
-      </form>
-    </div>
-
-
-
-
   </main>
 
 
 
+  <div class="chatbot__btn">
+    <div class="chatbot__tooltip d-none">Есть вопрос?</div>
+  </div>
 
 
-<div class="chatbot__btn">
-  <div class="chatbot__tooltip d-none">Есть вопрос?</div>
-</div>
 
 
 
@@ -297,71 +301,80 @@
   <script src="assets/js/main.js"></script>
 
 
-<script>
 
-  // конфигурация чат-бота
-  const configChatbot = {};
-  // CSS-селектор кнопки, посредством которой будем вызывать окно диалога с чат-ботом
-  configChatbot.btn = 'chatbot__btn';
-  // ключ для хранения отпечатка браузера
-  configChatbot.key = 'fingerprint';
-  // реплики чат-бота
-  configChatbot.replicas = '/chatbot2/data/data-1.json';
-  // корневой элемент
-  configChatbot.root = SimpleChatbot.createTemplate();
-  // URL chatbot.php
-  configChatbot.url = '/chatbot2/chatbot/chatbot.php';
 
-  // переменная для хранения экземпляра
-  let chatbot = null;
-  // добавление ключа для хранения отпечатка браузера в LocalStorage
-  let fingerprint = localStorage.getItem(configChatbot.key);
-  if (!fingerprint) {
-    Fingerprint2.get(function (components) {
-      fingerprint = Fingerprint2.x64hash128(components.map(function (pair) {
-        return pair.value
-      }).join(), 31)
-      localStorage.setItem(configChatbot.key, fingerprint)
-    });
-  }
-  // при клике по кнопке configChatbot.btn
-  var catbtn = document.getElementsByClassName(configChatbot.btn)[0];
-  catbtn.addEventListener('click', function (event) {
-    console.log(1);
-    this.classList.add('d-none');
-    const $tooltip = this.querySelector('.chatbot__tooltip');
-    if ($tooltip) {
-      $tooltip.classList.add('d-none');
+
+
+
+  <script>
+    // конфигурация чат-бота
+    const configChatbot = {};
+    // CSS-селектор кнопки, посредством которой будем вызывать окно диалога с чат-ботом
+    configChatbot.btn = 'chatbot__btn';
+    // ключ для хранения отпечатка браузера
+    configChatbot.key = 'fingerprint';
+    // реплики чат-бота
+    configChatbot.replicas = '/chatbot2/data/data-1.json';
+    // корневой элемент
+    configChatbot.root = SimpleChatbot.createTemplate();
+    // URL chatbot.php
+    configChatbot.url = '/chatbot2/chatbot/chatbot.php';
+
+    // переменная для хранения экземпляра
+    let chatbot = null;
+    // добавление ключа для хранения отпечатка браузера в LocalStorage
+    let fingerprint = localStorage.getItem(configChatbot.key);
+    if (!fingerprint) {
+      Fingerprint2.get(function (components) {
+        fingerprint = Fingerprint2.x64hash128(components.map(function (pair) {
+          return pair.value
+        }).join(), 31)
+        localStorage.setItem(configChatbot.key, fingerprint)
+      });
     }
-    configChatbot.root.classList.toggle('chatbot_hidden');
-    if (chatbot) {
-      return;
-    }
-    // получение json-файла, содержащего сценарий диалога для чат-бота через AJAX
-    const request = new XMLHttpRequest();
-    request.open('GET', configChatbot.replicas, true);
-    request.responseType = 'json';
-    request.onload = function () {
-      const status = request.status;
-      if (status === 200) {
-        const data = request.response;
-        // для поддержки IE11
-        if (typeof data === 'string') {
-          configChatbot.replicas = JSON.parse(data);
-        } else {
-          configChatbot.replicas = data;
-        }
-        // инициализация SimpleChatbot
-        chatbot = new SimpleChatbot(configChatbot);
-        chatbot.init();
-      } else {
-        console.log(status, request.response);
+    // при клике по кнопке configChatbot.btn
+    var catbtn = document.getElementsByClassName(configChatbot.btn)[0];
+    catbtn.addEventListener('click', function (event) {
+      console.log(1);
+      this.classList.add('d-none');
+      const $tooltip = this.querySelector('.chatbot__tooltip');
+      if ($tooltip) {
+        $tooltip.classList.add('d-none');
       }
-    };
-    request.send();
-  });
+      configChatbot.root.classList.toggle('chatbot_hidden');
+      if (chatbot) {
+        return;
+      }
+      // получение json-файла, содержащего сценарий диалога для чат-бота через AJAX
+      const request = new XMLHttpRequest();
+      request.open('GET', configChatbot.replicas, true);
+      request.responseType = 'json';
+      request.onload = function () {
+        const status = request.status;
+        if (status === 200) {
+          const data = request.response;
+          // для поддержки IE11
+          if (typeof data === 'string') {
+            configChatbot.replicas = JSON.parse(data);
+          } else {
+            configChatbot.replicas = data;
+          }
+          // инициализация SimpleChatbot
+          chatbot = new SimpleChatbot(configChatbot);
+          chatbot.init();
+        } else {
+          console.log(status, request.response);
+        }
+      };
+      request.send();
+    });
 
-</script>
+  </script>
+
+
+
+
+
 
 
 

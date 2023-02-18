@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/image_2023-02-18_19-43-53.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -29,12 +29,16 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin - v2.5.0
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <link rel="stylesheet" href="chatbot2/chatbot/chatbot.css">
+  <!-- FingerPrint JS -->
+  <script src="chatbot2/chatbot/fp2.js"></script>
+  <!-- ChatBot JS -->
+  <script src="chatbot2/chatbot/chatbot.js"></script>
+
+
 </head>
 
 <body>
@@ -44,7 +48,6 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Молодёжь России</span>
       </a>
     </div><!-- End Logo -->
@@ -92,13 +95,13 @@
 
         <li class="nav-item dropdown pe-3">
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="assets/img/free-icon-russia-197408.png" alt="Profile" class="rounded-circle">
           </a><!-- End Profile Iamge Icon -->
         </li><!-- End Profile Nav -->
 
         <li class="nav-item dropdown pe-3">
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <i class="bi bi-box-arrow-right"></i>
           </a><!-- End Profile Iamge Icon -->
         </li><!-- End Profile Nav -->
 
@@ -132,18 +135,14 @@
 
 
       <li class="nav-item">
-
         <a class="" href="users-profile.html">
           <i class="bi bi-person"></i>
-          <span>Profile</span>
+          <span>Профиль</span>
         </a>
         <a class="" href="users-profile.html">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
+          <i class="bi bi-arrow-clockwise"></i>
+          <span>Обновить</span>
         </a>
-
-
-
       </li><!-- End Profile Page Nav -->
 
 
@@ -158,21 +157,21 @@
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
+        <a class="nav-link collapsed" href="project.html">
           <i class="bi bi-envelope"></i>
           <span>МОИ ПРОЕКТЫ</span>
         </a>
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
+        <a class="nav-link collapsed" href="project.html">
           <i class="bi bi-card-list"></i>
           <span>АРХИВ ПРОЕКТОВ</span>
         </a>
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
+        <a class="nav-link collapsed" href="application.html">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>МОИ ЗАЯВКИ</span>
         </a>
@@ -180,7 +179,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-error-404.html">
-          <i class="bi bi-dash-circle"></i>
+          <i class="bi bi-file-earmark"></i>
           <span>ГРАНТОВЫЕ СОГЛАШЕНИЯ</span>
         </a>
       </li><!-- End Error 404 Page Nav -->
@@ -269,24 +268,25 @@
 
             <h1>Руководитель проекта</h1>
             <label>Опыт руководителя</label>
-            <textarea></textarea>
+            <textarea class="form-control"></textarea>
             <label>Описание функционала руководителя</label>
-            <textarea></textarea>
+            <textarea class="form-control"></textarea>
             <label>Адрес регистрации руководителя проекта</label>
-            <input>
+            <input class="form-control">
             <label>Описание функционала руководителя</label>
-            <input>
+            <input class="form-control">
 
             <label>Добавить резюме</label>
-            <input>
+            <input class="form-control">
             <label>Видео-визитка</label>
-            <input>
+            <input class="form-control">
 
 
             <br>
             <br>
             СОХРАНИТЕ ВНЕСЕННЫЕ ИЗМЕНЕНИЯ ПУТЕМ НАЖАТИЯ КНОПКИ «СОХРАНИТЬ ЧЕРНОВИК» ИЛИ «СОХРАНИТЬ ПРОЕКТ»
-
+            <br>
+            <br>
             <div class="project-btn-div">
               <button class="project-btn">Создать черновик</button>
               <button class="project-btn">Создать проект</button>
@@ -300,17 +300,15 @@
     </section>
 
 
-
-
-
-
-
   </main>
 
 
 
 
 
+  <div class="chatbot__btn">
+    <div class="chatbot__tooltip d-none">Есть вопрос?</div>
+  </div>
 
 
 
@@ -318,7 +316,7 @@
   <footer id="footer" class="footer">
     <div class="credits">
 
-      © 2008-2023, Федеральное агентство по делам молодёжи (Росмолодёжь)
+      2008-2023, Федеральное агентство по делам молодёжи (Росмолодёжь)
     </div>
   </footer>
 
@@ -336,6 +334,77 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+
+
+  <script>
+    // конфигурация чат-бота
+    const configChatbot = {};
+    // CSS-селектор кнопки, посредством которой будем вызывать окно диалога с чат-ботом
+    configChatbot.btn = 'chatbot__btn';
+    // ключ для хранения отпечатка браузера
+    configChatbot.key = 'fingerprint';
+    // реплики чат-бота
+    configChatbot.replicas = '/chatbot2/data/data-1.json';
+    // корневой элемент
+    configChatbot.root = SimpleChatbot.createTemplate();
+    // URL chatbot.php
+    configChatbot.url = '/chatbot2/chatbot/chatbot.php';
+
+    // переменная для хранения экземпляра
+    let chatbot = null;
+    // добавление ключа для хранения отпечатка браузера в LocalStorage
+    let fingerprint = localStorage.getItem(configChatbot.key);
+    if (!fingerprint) {
+      Fingerprint2.get(function (components) {
+        fingerprint = Fingerprint2.x64hash128(components.map(function (pair) {
+          return pair.value
+        }).join(), 31)
+        localStorage.setItem(configChatbot.key, fingerprint)
+      });
+    }
+    // при клике по кнопке configChatbot.btn
+    var catbtn = document.getElementsByClassName(configChatbot.btn)[0];
+    catbtn.addEventListener('click', function (event) {
+      console.log(1);
+      this.classList.add('d-none');
+      const $tooltip = this.querySelector('.chatbot__tooltip');
+      if ($tooltip) {
+        $tooltip.classList.add('d-none');
+      }
+      configChatbot.root.classList.toggle('chatbot_hidden');
+      if (chatbot) {
+        return;
+      }
+      // получение json-файла, содержащего сценарий диалога для чат-бота через AJAX
+      const request = new XMLHttpRequest();
+      request.open('GET', configChatbot.replicas, true);
+      request.responseType = 'json';
+      request.onload = function () {
+        const status = request.status;
+        if (status === 200) {
+          const data = request.response;
+          // для поддержки IE11
+          if (typeof data === 'string') {
+            configChatbot.replicas = JSON.parse(data);
+          } else {
+            configChatbot.replicas = data;
+          }
+          // инициализация SimpleChatbot
+          chatbot = new SimpleChatbot(configChatbot);
+          chatbot.init();
+        } else {
+          console.log(status, request.response);
+        }
+      };
+      request.send();
+    });
+
+  </script>
+
+
+
+
 
 </body>
 
