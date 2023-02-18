@@ -1,12 +1,9 @@
-import re
-from text_to_num import alpha2digit
-import jellyfish
-import pandas as pd
-#from audio2text import get_text
-import os
-import requests
-from nltk.corpus import stopwords
 import json
+# from audio2text import get_text
+import os
+import re
+
+import requests
 from nltk.stem.snowball import SnowballStemmer
 
 words_to_section = {'добавить проект': ['созда', 'проект', 'сдела', 'описа', 'добав'],

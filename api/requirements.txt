@@ -1,1 +1,4 @@
 Flask
+nltk
+pydub
+vosk
