@@ -5,7 +5,7 @@ import re
 from flask import Flask, request, Response
 from flask_cors import CORS
 
-from api.text_test_processing import web_bot
+from text_process import web_bot
 from audio2text import get_text
 
 app = Flask(__name__)
@@ -31,14 +31,14 @@ def handle_request():
     try:
         result = web_bot(text)
     except Exception as e:
-        return {"text": "У меня нет идей... А ещё нейросеть упала"}
+        return {"text": "У меня нет идей... А ещё нейросеть упала:"+str(e)}
     if type(result) is str:
         if is_web:
             result = find_and_format_email(result)
         return {"text": result}
     if len(result) < 1:
         return {"text": "У меня нет идей..."}
-    msg = result[0]
+    msg = ' '.join(result[0])
     if is_web:
         msg = find_and_format_email(msg)
     return {"text": ' '.join(msg)}
