@@ -415,5 +415,3 @@ def web_bot(text):
 
 
 
-#web_bot('Проекты')
-
