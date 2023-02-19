@@ -13,7 +13,9 @@
 
 ## Стек решения: javascript, react, php, python, vosk, pydub
 
-## Ссылка на сайт с помощником: http://f0781092.xsph.ru/frontend/project.html#
+## Ссылка на сайт с помощником: http://f0781092.xsph.ru/frontend/project.html# 
+
+## Ссылка на телеграмм бота: https://t.me/digital_assistant_pink_cats_bot
 
 ## Как установить ChatBot API и Telegram Connection
 
