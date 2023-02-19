@@ -12,3 +12,11 @@
 3. Цифровой помощник может быть быстро адаптирован и интегрирован в сайт.
 
 ## Стек решения: javascript, react, php, python, vosk, pydub
+
+## Как установить ChatBot API и Telegram Connection
+
+Для этого нужно иметь систему Docker 
+1. Клонирование репозитория  
+`git clone`
+2. Далее запустить контейнеры через систему Docker. Также нужно указать токен к боту телеграм (необязательно).
+`docker-comkpose up -e TELEGRAM_BOT_TOKEN=pass_your_token`
