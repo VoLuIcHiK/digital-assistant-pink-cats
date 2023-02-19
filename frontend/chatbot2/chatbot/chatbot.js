@@ -1,5 +1,6 @@
-var ajaxCheck = 0;
-var ajaxCheck2 = 0;
+
+var ajaxCheck;
+var ajaxCheck2;
 var ajaxText = '';
 
 
@@ -102,8 +103,8 @@ SimpleChatbot.prototype.reset = function() {
 SimpleChatbot.prototype._template = function (type, content, state) {
   var state = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
   return '<div class="chatbot__item chatbot__item_'
-    .concat(type, '"><div class="chatbot__content chatbot__content_')
-    .concat(type, state, '">', content, '</div></div>');
+      .concat(type, '"><div class="chatbot__content chatbot__content_')
+      .concat(type, state, '">', content, '</div></div>');
 };
 
 // шаблон кнопки
@@ -126,16 +127,12 @@ SimpleChatbot.prototype._outputContent = function (interval) {
 
 
   // отправляем данные на сервер
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = function () {
-    if (request.readyState === 0 || request.readyState === 4) {
-      if (request.status == 200) {
-        console.log(JSON.parse(request.responseText));
-      }
-    }
-  }
-  console.log(ajaxCheck, ajaxText);
-  if(ajaxCheck != 0){
+
+  console.log(ajaxCheck, ajaxCheck2, ajaxText);
+
+  if(typeof ajaxCheck != "undefined" && ajaxCheck != 0){
+    console.log(123123123123);
+    ajaxCheck = 0;
     botContent = ajaxText;
   }
 
@@ -160,19 +157,21 @@ SimpleChatbot.prototype._outputContent = function (interval) {
       }
     }
   }
+
+
   var _this = this;
   var fn2 = function () {
     if (_this._getData('human', humanIds[0]).content === '') {
       _this._$root.querySelector('.chatbot__input').disabled = false;
       _this._$root.querySelector('.chatbot__input').dataset.name = _this._getData(
-        'human',
-        humanIds[0]
+          'human',
+          humanIds[0]
       ).name;
       _this._$root.querySelector('.chatbot__submit').disabled = true;
       _this._$root.querySelector('.chatbot__input').focus();
       _this._$root.querySelector('.chatbot__submit').dataset.botIndex = _this._getData(
-        'human',
-        humanIds[0]
+          'human',
+          humanIds[0]
       ).bot;
     } else {
       _this._$root.querySelector('.chatbot__input').value = '';
@@ -366,40 +365,34 @@ SimpleChatbot.prototype._eventHandlerClick = function (e) {
           userLastMsg = obj[key].content;
         }
 
-        if(userLastMsg == 'Задать вопрос') {
+        if (ajaxCheck2 == 1) {
+          console.log(1233);
+          ajaxCheck2 = 0;
+          $.ajax({
+            url: 'http://projectvoid.play.ai:8080/api',
+            type: 'POST',
+            data: {text: userLastMsg, is_web: true},
+            success: function (result) {
+              ajaxCheck = 1;
+              ajaxText = result.text;
+            }
+          });
+        }
+        if (userLastMsg == 'Задать вопрос') {
           ajaxCheck2 = 1;
-          ajaxCheck = 1;
-        }
-        if(ajaxCheck2 == 1) {
-
-
-          // $.ajax({
-          //   url: 'https://projectvoid.play.ai/api',
-          //   type: 'POST',
-          //   data: '123',
-          //   success: function (result){
-          //     ajaxCheck = 1;
-          //     ajaxText = 'asdasd';
-          //   }
-          // });
-
-
-          ajaxText = 'Вернуть что то';
-
         }
 
 
 
 
 
-
-
-      } else {
-        console.log('error');
       }
-    }
 
-  };
+
+    }
+  }
+
+
   request.open('POST', url);
   request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   request.setRequestHeader('Content-Type', 'application/json');
