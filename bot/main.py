@@ -1,7 +1,6 @@
 import os
 import requests
 import telebot
-from cffi.backend_ctypes import unicode
 import json
 
 from telebot.types import Message
@@ -12,7 +11,7 @@ token = os.environ.get('TELEGRAM_BOT_TOKEN', None)
 bot = telebot.TeleBot(token)
 
 # get api url from system env or default
-api_url = os.environ.get('API_URL', 'http://localhost:8080/api')
+api_url = os.environ.get('API_URL', 'http://192.168.0.198:8080/api')
 print(f"API URL: {api_url}")
 
 # define the handler for audio messages
