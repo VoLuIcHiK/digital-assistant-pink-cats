@@ -12,6 +12,9 @@ WORKDIR /var/www/html
 # Copy the project files from the current directory to the container's filesystem
 COPY . /var/www/html
 
+RUN chown -R www-data:www-data /var/www/html/chatbot2/chatbot/chats && \
+    chmod -R 775 /var/www/html/chatbot2/chatbot/chats
+
 # Expose port 80 for HTTP traffic
 EXPOSE 80
 

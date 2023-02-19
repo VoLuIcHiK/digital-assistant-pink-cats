@@ -296,7 +296,7 @@ def stopwords_stem(text):
 def show_field_info(field):
     '''Функция, отвечающая за нахождение информации о нужном поле, где
     dict_field - словарь, где key - название поля, value - информация по заполнению данного поля'''
-    with open('instructions2fields.txt') as file:  # Читаем файл
+    with open('instructions2fields.txt', encoding='utf-8') as file:  # Читаем файл
         lines = file.read().splitlines()  # read().splitlines() - чтобы небыло пустых строк
     info_dict = {}
     for line in lines:
@@ -326,7 +326,7 @@ def choose_action(words):
 def answer_faq(problem):
     '''Функция, отвечающая за ответ на самые популярные вопросы, где
     dict_field - словарь, где key - название поля, value - информация по заполнению данного поля'''
-    with open('faq.txt') as file:  # Читаем файл
+    with open('faq.txt', encoding='utf-8') as file:  # Читаем файл
         lines = file.read().splitlines()  # read().splitlines() - чтобы небыло пустых строк
     problem_dict = {}
     for line in lines:

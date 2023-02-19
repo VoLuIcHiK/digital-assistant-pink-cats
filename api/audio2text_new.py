@@ -1,10 +1,8 @@
 import os
 from vosk import Model, KaldiRecognizer, SetLogLevel
 from pydub import AudioSegment
-import subprocess
 import json
 import io
-import ffmpeg
 
 
 def get_text(filename):
