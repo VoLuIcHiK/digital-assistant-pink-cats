@@ -21,12 +21,10 @@
 1. Клонирование репозитория  
 `git clone`
 2. Далее запустить контейнеры через систему Docker. Также нужно указать токен к боту телеграм (необязательно).  
-`docker-comkpose up -e TELEGRAM_BOT_TOKEN=pass_your_token`
+`docker-compose up`
 
 ## Навигация по файлам
-Сайт с цифровым помощником - https://github.com/VoLuIcHiK/digital-assistant-pink-cats/tree/main/frontend
-
-Телеграм бот - https://github.com/VoLuIcHiK/digital-assistant-pink-cats/tree/main/bot
-
-Api и модель - https://github.com/VoLuIcHiK/digital-assistant-pink-cats/tree/main/api
+1. Сайт с цифровым помощником - https://github.com/VoLuIcHiK/digital-assistant-pink-cats/tree/main/frontend
+2. Телеграм бот - https://github.com/VoLuIcHiK/digital-assistant-pink-cats/tree/main/bot 
+3. Api и модель - https://github.com/VoLuIcHiK/digital-assistant-pink-cats/tree/main/api  
 
