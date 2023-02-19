@@ -25,6 +25,8 @@
 
 ## Навигация по файлам
 Сайт с цифровым помощником - https://github.com/VoLuIcHiK/digital-assistant-pink-cats/tree/main/frontend
+
 Телеграм бот - https://github.com/VoLuIcHiK/digital-assistant-pink-cats/tree/main/bot
+
 Api и модель - https://github.com/VoLuIcHiK/digital-assistant-pink-cats/tree/main/api
 
