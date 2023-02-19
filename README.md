@@ -13,6 +13,8 @@
 
 ## Стек решения: javascript, react, php, python, vosk, pydub
 
+## Ссылка на сайт с помощником: http://f0781092.xsph.ru/frontend/project.html#
+
 ## Как установить ChatBot API и Telegram Connection
 
 Для этого нужно иметь систему Docker 
